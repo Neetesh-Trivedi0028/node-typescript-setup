@@ -1,0 +1,427 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "version": "1.0.0",
+    "title": "Telepathy VIP Chat Application",
+    "contact": {
+      "name": "API Support",
+      "email": "telepathadmin@telepathyinfotech.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "Operations related to authentication"
+    }
+  ],
+  "paths": {
+    "/api/register": {
+      "post": {
+        "summary": "register into app",
+        "operationId": "register",
+        "tags": ["Authentication"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/headerPlatform"
+          },
+          {
+            "$ref": "#/components/parameters/headerVersion"
+          },
+          {
+            "$ref": "#/components/parameters/acceptLanguage"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "username": "neetesh0027",
+                "email": "neetesh.trivedi@yopmail.com",
+                "role": "fan"
+              },
+              "schema": {
+                "type": "object",
+                "required": ["username", "email", "role"],
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Account created Successfully !",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiResponse"
+                    }
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "accessToken": {
+                          "type": "string"
+                        },
+                        "refreshToken": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestError"
+          }
+        }
+      }
+    },
+    "/api/passwordsetup": {
+      "post": {
+        "summary": "set password into app",
+        "operationId": "passwordsetup",
+        "tags": ["Authentication"],
+        "security": [
+          {
+            "ApiAccessKeyAuth": []
+          },
+          {
+            "ApiRefreshKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/headerPlatform"
+          },
+          {
+            "$ref": "#/components/parameters/headerVersion"
+          },
+          {
+            "$ref": "#/components/parameters/acceptLanguage"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "password": "user@123",
+                "confrimpassword": "user@123"
+              },
+              "schema": {
+                "type": "object",
+                "required": ["password", "confrimpassword"],
+                "properties": {
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "Password of registered user"
+                  },
+                  "confrimpassword": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "Confrim Password of registered user"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password created Successfully !",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestError"
+          }
+        }
+      }
+    },
+    "/api/login": {
+      "post": {
+        "summary": "login user into app",
+        "operationId": "login-user",
+        "tags": ["Authentication"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/headerPlatform"
+          },
+          {
+            "$ref": "#/components/parameters/headerVersion"
+          },
+          {
+            "$ref": "#/components/parameters/acceptLanguage"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "email": "neetesh.trivedi@yopmail.com",
+                "password": "user@123"
+              },
+              "schema": {
+                "type": "object",
+                "required": ["email", "password"],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email address of registered user"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "Password of registered user"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "user login successfully !",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestError"
+          }
+        }
+      }
+    },
+
+    "/api/logout": {
+      "get": {
+        "summary": "logout user",
+        "operationId": "logOutUser",
+        "tags": ["Authentication"],
+        "security": [
+          {
+            "ApiAccessKeyAuth": []
+          },
+          {
+            "ApiRefreshKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/headerPlatform"
+          },
+          {
+            "$ref": "#/components/parameters/headerVersion"
+          },
+          {
+            "$ref": "#/components/parameters/acceptLanguage"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "logged out successfully !",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiResponse"
+                    },
+                    {
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestError"
+          }
+        }
+      }
+    },
+    "/api/testapi": {
+      "get": {
+        "summary": "test api for user",
+        "operationId": "testapi",
+        "tags": ["Authentication"],
+        "security": [
+          {
+            "ApiAccessKeyAuth": []
+          },
+          {
+            "ApiRefreshKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/headerPlatform"
+          },
+          {
+            "$ref": "#/components/parameters/headerVersion"
+          },
+          {
+            "$ref": "#/components/parameters/acceptLanguage"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "logged out successfully !",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiResponse"
+                    },
+                    {
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestError"
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "securitySchemes": {
+      "ApiAccessKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Access Token for authorization"
+      },
+      "ApiRefreshKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "RefreshAuthorization",
+        "description": "Refresh Token for renewing access tokens"
+      }
+    },
+    "parameters": {
+      "headerPlatform": {
+        "name": "x-vip-chat-club-platform",
+        "in": "header",
+        "description": "iOS/Android",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "enum": ["ios", "android", "web"]
+        }
+      },
+      "headerVersion": {
+        "name": "x-vip-chat-club-version",
+        "in": "header",
+        "description": "version of application",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1.0.0"
+        }
+      },
+      "acceptLanguage": {
+        "name": "x-vip-chat-club-accept-language",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "enum": ["en"],
+          "default": "en"
+        }
+      }
+    },
+    "responses": {
+      "BadRequestError": {
+        "description": "Invalid request payload",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "data": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

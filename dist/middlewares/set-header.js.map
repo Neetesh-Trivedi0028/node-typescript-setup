@@ -1,0 +1,1 @@
+{"version":3,"file":"set-header.js","sourceRoot":"","sources":["../../src/middlewares/set-header.ts"],"names":[],"mappings":";;;AAKA,oDAAoD;AAC7C,MAAM,aAAa,GAAG,CAAC,GAAkB,EAAE,IAAkB,EAAE,EAAE;IACtE,GAAG,CAAC,aAAa,GAAG;QAClB,OAAO,EAAE,OAAO;QAChB,cAAc,EAAE,IAAI;QACpB,QAAQ,EAAE,KAAK,EAAE,oDAAoD;KACtE,CAAC;IACF,IAAI,EAAE,CAAC;AACT,CAAC,CAAC;AAPW,QAAA,aAAa,iBAOxB"}

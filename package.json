@@ -1,0 +1,45 @@
+{
+  "name": "vitchatclub",
+  "version": "1.0.0",
+  "description": "VIP Chat Club",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "typescript-watch": "tsc --watch",
+    "start": "node dist/app.js",
+    "dev": "nodemon index.ts",
+    "watch": "npm run typescript-watch"
+  },
+  "author": "Telepathy",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^7.4.0",
+    "express-validator": "^7.2.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.6.2",
+    "swagger-ui-express": "^5.0.1",
+    "ts-node-dev": "^2.0.0",
+    "winston": "^3.14.2",
+    "winston-daily-rotate-file": "^5.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^22.5.5",
+    "@types/swagger-ui-express": "^4.1.6",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}

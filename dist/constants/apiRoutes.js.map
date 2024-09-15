@@ -1,0 +1,1 @@
+{"version":3,"file":"apiRoutes.js","sourceRoot":"","sources":["../../src/constants/apiRoutes.ts"],"names":[],"mappings":";;;AAAA;;;GAGG;AACU,QAAA,SAAS,GAAG;IACvB,KAAK,EAAE,GAAG;IACV,GAAG,EAAE,MAAM;IACX,OAAO,EAAE,UAAU;IACnB,QAAQ,EAAE,WAAW;IACrB,aAAa,EAAE,gBAAgB;IAC/B,KAAK,EAAE,QAAQ;IACf,MAAM,EAAE,SAAS;IACjB,OAAO,EAAE,UAAU;CACpB,CAAC"}
